@@ -1,0 +1,94 @@
+/* Custom Font Inter */
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap");
+
+/* Animasi Fade Up untuk Task Item */
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Reset placeholder */
+input[type="date"]::before,
+input[type="time"]::before {
+  content: attr(placeholder) !important;
+  color: #9ca3af; /* text-gray-400 */
+  margin-right: 0.5em;
+}
+input[type="date"]:focus::before,
+input[type="date"]:valid::before,
+input[type="time"]:focus::before,
+input[type="time"]:valid::before {
+  content: "";
+  display: none;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 10px;
+}
+.dark ::-webkit-scrollbar-thumb {
+  background: #374151;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
+}
+
+/* Latar belakang */
+.modal-backdrop {
+  backdrop-filter: blur(4px);
+  background-color: rgba(0, 0, 0, 0.4); /* Lebih transparan karena ada blur */
+  transition: all 0.3s ease;
+}
+
+/* Teks timer Pomodoro */
+#pomodoro-timer {
+  font-family: "Inter", "sans-serif";
+  font-weight: 800;
+  font-size: 8rem;
+  letter-spacing: -0.05em;
+  font-variant-numeric: tabular-nums; /* Agar angka tidak lompat saat berubah */
+}
+
+@media (max-width: 640px) {
+  #pomodoro-timer {
+    font-size: 5rem;
+  }
+}
+
+/* Slider Volume */
+input[type="range"] {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: 6px;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 999px;
+  outline: none;
+}
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 18px;
+  height: 18px;
+  background: white;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: transform 0.1s;
+}
+input[type="range"]::-webkit-slider-thumb:hover {
+  transform: scale(1.2);
+}
