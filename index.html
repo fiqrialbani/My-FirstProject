@@ -4,10 +4,10 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>TaskHub</title>
-
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script>
-
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
     <script>
       tailwind.config = {
         darkMode: "class",
@@ -21,14 +21,14 @@
                 50: "#eef2ff",
                 100: "#e0e7ff",
                 500: "#6366f1",
-                600: "#4f46e5", // Primary Brand
+                600: "#4f46e5",
                 700: "#4338ca",
                 900: "#312e81",
               },
               gray: {
                 850: "#1f2937",
                 900: "#111827",
-                950: "#030712", // Deep Dark Mode
+                950: "#030712",
               },
             },
           },
@@ -36,15 +36,10 @@
       };
     </script>
 
-    <link rel="stylesheet" href="style.css" />
-
-    <!-- Firebase -->
-    <script src="https://www.gstatic.com/firebasejs/11.6.1/firebase-app-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/11.6.1/firebase-auth-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore-compat.js"></script>
+    <link rel="stylesheet" href="assets/css/style.css" />
   </head>
   <body
-    class="bg-gradient-to-br from-slate-50 to-indigo-50 dark:from-gray-950 dark:to-gray-900 min-h-screen text-gray-800 dark:text-gray-200 font-sans antialiased transition-colors duration-500 overflow-x-hidden relative"
+    class="bg-gradient-to-br from-slate-50 to-indigo-50 dark:from-gray-950 dark:to-gray-900 min-h-screen text-gray-800 dark:text-gray-200 font-sans antialiased transition-colors duration-0 overflow-x-hidden relative"
   >
     <!-- Background -->
     <div
@@ -347,11 +342,13 @@
       class="fixed inset-0 z-[60] flex flex-col items-center justify-center p-4 hidden bg-gray-900/95 backdrop-blur-sm transition-opacity duration-300"
     >
       <div class="text-center w-full max-w-lg">
+        <!-- Header -->
         <div class="mb-10 animate-pulse">
           <span
             class="inline-block px-3 py-1 rounded-full bg-indigo-500/20 text-indigo-300 text-xs font-bold tracking-wider uppercase mb-4"
-            >Focus Mode</span
           >
+            Focus Mode
+          </span>
           <h2
             id="pomodoro-task-name"
             class="text-2xl sm:text-3xl font-medium text-white line-clamp-2 px-4"
@@ -360,10 +357,15 @@
           </h2>
         </div>
 
-        <div id="pomodoro-timer" class="text-white mb-12 tabular-nums">
+        <!-- Timer -->
+        <div
+          id="pomodoro-timer"
+          class="text-white mb-12 tabular-nums text-4xl font-bold"
+        >
           25:00
         </div>
 
+        <!-- Tombol -->
         <div class="flex gap-6 justify-center mb-12">
           <button
             id="pomodoro-start-pause"
@@ -388,25 +390,39 @@
               class="text-xs text-gray-400 font-medium uppercase tracking-wider"
               >Ambience</span
             >
+
             <select
               id="pomodoro-sound"
-              class="bg-transparent text-sm text-indigo-300 focus:outline-none cursor-pointer text-right"
+              aria-label="Pilih lagu atau suara"
+              class="bg-transparent text-sm text-indigo-300 focus:outline-none cursor-pointer text-right w-28 truncate"
             >
-              <option value="hening" class="text-gray-900">Mute</option>
-              <option value="white-noise" class="text-gray-900">
-                White Noise
+              <option value="none" class="text-gray-900">Mute</option>
+              <option
+                value="assets/audio/Mice on Venus.mp3"
+                class="text-gray-900"
+              >
+                Mice on Venus
+              </option>
+              <option
+                value="assets/audio/Banda Neira - Sampai Jadi Debu.mp3"
+                class="text-gray-900"
+              >
+                Banda Neira - Sampai Jadi Debu
               </option>
             </select>
           </div>
+
           <div class="flex items-center gap-3">
-            <span class="text-gray-500 text-xs">🔈</span>
+            <span class="text-gray-500 text-xs">🔉</span>
             <input
               type="range"
               id="pomodoro-volume"
+              aria-label="Volume suara"
               min="0"
-              max="0.1"
-              step="0.01"
-              value="0.05"
+              max="1"
+              step="0.05"
+              value="0.5"
+              class="flex-grow accent-indigo-500 cursor-pointer"
             />
             <span class="text-gray-500 text-xs">🔊</span>
           </div>
@@ -414,6 +430,6 @@
       </div>
     </div>
 
-    <script src="script.js" defer></script>
+    <script type="module" src="./src/main.js" defer></script>
   </body>
 </html>
