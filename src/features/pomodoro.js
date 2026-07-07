@@ -52,15 +52,20 @@ export function initPomodoro() {
     } else {
       isPomodoroRunning = true;
       pomodoroStartPause.textContent = "Pause";
-      
+
       pomodoroInterval = setInterval(() => {
         pomodoroSecondsRemaining--;
         updateTimer();
-        
+
         if (pomodoroSecondsRemaining <= 0) {
           clearInterval(pomodoroInterval);
           isPomodoroRunning = false;
-          // Timer selesai
+          audioPlayer.pause();
+          audioPlayer.currentTime = 0;
+
+          if (pomodoroSoundSelect) {
+            pomodoroSoundSelect.value = "none";
+          }
         }
       }, 1000);
     }
@@ -70,16 +75,16 @@ export function initPomodoro() {
   pomodoroStop.addEventListener("click", () => {
     clearInterval(pomodoroInterval);
     isPomodoroRunning = false;
-    
+
     // Stop dan Reset Timer
     audioPlayer.pause();
-    audioPlayer.currentTime = 0; 
-    
+    audioPlayer.currentTime = 0;
+
     // Mute
     if (pomodoroSoundSelect) {
       pomodoroSoundSelect.value = "none";
     }
-    
+
     pomodoroModal.classList.add("hidden");
   });
 
@@ -89,7 +94,7 @@ export function initPomodoro() {
     if (pomodoroTaskName) {
       pomodoroTaskName.textContent = name;
     }
-    
+
     pomodoroModal.classList.remove("hidden");
     isPomodoroRunning = false;
     pomodoroSecondsRemaining = 25 * 60;
